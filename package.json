@@ -5,8 +5,8 @@
   "scripts": {
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html",
-    "watch.css": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch --netlify",
-    "build.css": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --build --netlify"
+    "watch-css": "npx tailwindcss -i ./src/input.css -o ./output/output.css --watch --netlify",
+    "build-css": "npx tailwindcss -i ./src/input.css -o ./output/output.css --build --netlify"
   },
   "repository": {
     "type": "git",
