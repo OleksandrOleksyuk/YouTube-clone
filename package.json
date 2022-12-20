@@ -1,0 +1,24 @@
+{
+  "name": "youtube-clone",
+  "version": "1.0.0",
+  "description": "YouTube clone",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html",
+    "watch": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch --netlify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OleksandrOleksyuk/YouTube-clone.git"
+  },
+  "author": "Oleksandr Oleksyuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OleksandrOleksyuk/YouTube-clone/issues"
+  },
+  "homepage": "https://github.com/OleksandrOleksyuk/YouTube-clone#readme",
+  "devDependencies": {
+    "parcel": "^2.8.2",
+    "tailwindcss": "^3.2.4"
+  }
+}
