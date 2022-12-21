@@ -11,7 +11,7 @@ const state = {
 
 const createObject = function (data) {
   return data.items.map((element) => {
-    console.log(element.channelThumbnail); // BUG
+    // console.log(element.channelThumbnail); // BUGz
     ///// ===== creo quanti giorni fa è stato publicato il video
     const publishedAt =
       (Date.now() - Date.parse(new Date(element.snippet.publishedAt))) /
@@ -39,25 +39,22 @@ const createObject = function (data) {
 const loadData = async function () {
   try {
     const data = await getJSON(API_URL_VIDEO);
-
     // aggiungo le icone al mio oggetto data
-    data.items.forEach(async (el) => {
-      const data = await getChannelIcons(el);
-      console.log(data);
-      return data;
-    });
-    console.log(data.items);
-    console.log(state.items);
+
     state.items = [...createObject(data)];
+    const arr = await data.items.map(async (el, i) => {
+      const azzz = await getChannelIcons(el);
+      return (data.items[i].abcd = azzz);
+    });
+
     // RENDERIZZO I MIEI ELEMENTI
     state.items.forEach((data) => view.render(data));
-    // view.render(data.items[0]);
-    console.log(data);
   } catch (error) {
     console.error(error);
   }
 };
 console.log(state);
+
 const getChannelIcons = async function (dataVideo) {
   try {
     const res = await fetch(
@@ -69,8 +66,7 @@ const getChannelIcons = async function (dataVideo) {
         })
     );
     const data = await res.json();
-    return (dataVideo.channelThumbnail =
-      data.items[0].snippet.thumbnails.default.url);
+    return data.items[0].snippet.thumbnails.default.url;
   } catch (error) {
     console.error(error);
   }
