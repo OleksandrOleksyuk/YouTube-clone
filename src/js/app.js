@@ -32,3 +32,35 @@ const getChannelIcons = async function (dataVideo) {
   }
 };
 loadData();
+
+const btnOpen = document.getElementById("btn-open");
+const btnClose = document.getElementById("btn-close");
+const btnCloseInput = document.getElementById("close-input");
+const menu = document.getElementById("aside-menu-small-display");
+const inputMobile = document.getElementById("input-mobile");
+const btnOpenInput = document.getElementById("btn-input-mobile");
+
+btnClose.addEventListener("click", function () {
+  menu.classList.add("hidden");
+});
+btnOpen.addEventListener("click", function () {
+  console.log(this);
+  menu.classList.remove("hidden");
+});
+
+const btn = document.getElementById("btn-open-tablet");
+btn.addEventListener("click", function () {
+  console.log(this);
+  menu.classList.remove("hidden");
+});
+
+btnOpenInput.addEventListener("click", function () {
+  inputMobile.classList.remove("hidden");
+  inputMobile.classList.add("flex");
+});
+
+btnCloseInput.addEventListener("click", function () {
+  console.log(this);
+  inputMobile.classList.remove("flex");
+  inputMobile.classList.add("hidden");
+});
