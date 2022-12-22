@@ -1,8 +1,18 @@
 "use strict";
-import { API_URL_VIDEO, API_KEY } from "./config";
+import { API_URL_VIDEO, API_KEY, API_URL_ICONS } from "./config";
 import { getJSON } from "./helpers";
 import view from "./view/view.js";
 
+// == ELEMENT DOM
+const btnOpen = document.getElementById("btn-open");
+const btnClose = document.getElementById("btn-close");
+const menu = document.getElementById("aside-menu-small-display");
+
+const btnOpenInput = document.getElementById("btn-input-mobile");
+const btnCloseInput = document.getElementById("close-input");
+const inputMobile = document.getElementById("input-mobile");
+
+// == CHIAMATA PRIMA API
 const loadData = async function () {
   try {
     const data = await getJSON(API_URL_VIDEO);
@@ -11,18 +21,17 @@ const loadData = async function () {
     console.error(error);
   }
 };
-
+// CHIAMATA SECONDA API PERCHÉ HO BISOGNO DELLA ICONA
 const getChannelIcons = async function (dataVideo) {
   try {
-    const res = await fetch(
-      `https://www.googleapis.com/youtube/v3/channels?` +
+    const data = await getJSON(
+      API_URL_ICONS +
         new URLSearchParams({
           key: API_KEY,
           part: "snippet",
           id: dataVideo.snippet.channelId,
         })
     );
-    const data = await res.json();
     // AGGIUNGO LE ICONE
     dataVideo.abcd = data.items[0].snippet.thumbnails.default.url;
     // RENDERIZZO I MIEI ELEMENTI
@@ -33,13 +42,7 @@ const getChannelIcons = async function (dataVideo) {
 };
 loadData();
 
-const btnOpen = document.getElementById("btn-open");
-const btnClose = document.getElementById("btn-close");
-const btnCloseInput = document.getElementById("close-input");
-const menu = document.getElementById("aside-menu-small-display");
-const inputMobile = document.getElementById("input-mobile");
-const btnOpenInput = document.getElementById("btn-input-mobile");
-
+// == EVENT LISTENER RESPONSIVE
 btnClose.addEventListener("click", function () {
   menu.classList.add("hidden");
 });

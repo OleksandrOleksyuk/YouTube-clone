@@ -7,3 +7,5 @@ const API_PARAMETERS = new URLSearchParams({
   regionCode: "US",
 });
 export const API_URL_VIDEO = `https://www.googleapis.com/youtube/v3/videos?${API_PARAMETERS}`;
+
+export const API_URL_ICONS = `https://www.googleapis.com/youtube/v3/channels?`;
